@@ -1,0 +1,6 @@
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\obj\Debug\myConsoleProject.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\bin\Debug\myConsoleProject.exe.config
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\bin\Debug\myConsoleProject.exe
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\bin\Debug\myConsoleProject.pdb
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\obj\Debug\myConsoleProject.exe
+C:\Users\Admin\Desktop\Basic_C#_Programs\myConsoleProject\myConsoleProject\obj\Debug\myConsoleProject.pdb
