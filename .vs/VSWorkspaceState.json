@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Basic_C#_Programs",
+    "\\Basic_C#_Programs\\HelloWorld",
+    "\\Basic_C#_Programs\\HelloWorld\\HelloWorld"
   ],
-  "SelectedNode": "\\C:\\Users\\Admin\\Desktop\\The-Tech-Academy-Basic-C-Sharp-Projects",
+  "SelectedNode": "\\Basic_C#_Programs\\HelloWorld\\HelloWorld\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
