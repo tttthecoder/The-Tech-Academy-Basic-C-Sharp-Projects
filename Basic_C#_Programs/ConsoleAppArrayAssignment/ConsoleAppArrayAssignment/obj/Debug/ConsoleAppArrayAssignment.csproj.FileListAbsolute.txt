@@ -1,0 +1,7 @@
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\bin\Debug\ConsoleAppArrayAssignment.exe.config
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\bin\Debug\ConsoleAppArrayAssignment.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\bin\Debug\ConsoleAppArrayAssignment.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\obj\Debug\ConsoleAppArrayAssignment.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\obj\Debug\ConsoleAppArrayAssignment.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\obj\Debug\ConsoleAppArrayAssignment.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ConsoleAppArrayAssignment\ConsoleAppArrayAssignment\obj\Debug\ConsoleAppArrayAssignment.pdb
