@@ -1,0 +1,6 @@
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\obj\Debug\ClassMethodAssignment.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\bin\Debug\ClassMethodAssignment.exe.config
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\bin\Debug\ClassMethodAssignment.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\bin\Debug\ClassMethodAssignment.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\obj\Debug\ClassMethodAssignment.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\ClassMethodAssignment\ClassMethodAssignment\obj\Debug\ClassMethodAssignment.pdb
