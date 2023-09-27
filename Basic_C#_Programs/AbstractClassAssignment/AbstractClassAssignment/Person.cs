@@ -14,19 +14,7 @@ namespace AbstractClassAssignment
         //abstract keyword make the method SayName() an abstract method which cannot have an implementation.
         public abstract void SayName();
     }
-
-
-
-    //Employee class inherits from Person class
-    class Employee : Person
-    {
-        //Actual implementation of the SayName() abstract method. This sastisfies the contract with the abstract parent class.  
-        public override void SayName()
-        {
-            Console.WriteLine("My name: {0} {1}", firstName, lastName);
-        }
-
-    }
+    
 }
 
 

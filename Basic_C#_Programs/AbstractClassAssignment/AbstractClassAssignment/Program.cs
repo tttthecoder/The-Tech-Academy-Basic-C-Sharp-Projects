@@ -10,10 +10,11 @@ namespace AbstractClassAssignment
     {
         static void Main(string[] args)
         {
-            //Create an Emnployee, which morph into the Person class.
-            Person employee = new Employee() { firstName = "Tin", lastName = "Tran" };
-            //Call the method on the Employee object.
-            employee.SayName();
+            //Create an Emnployee, which morph into the IQuittable interface.
+            IQuittable employee = new Employee() { firstName = "Tin", lastName = "Tran" };
+            //Call the Quit() method on the Employee object.
+            employee.Quit();
+
             Console.ReadLine();
         }
     }
