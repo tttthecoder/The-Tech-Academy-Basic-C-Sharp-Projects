@@ -1,0 +1,6 @@
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\bin\Debug\Method Class Assignment Submission.exe.config
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\bin\Debug\Method Class Assignment Submission.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\bin\Debug\Method Class Assignment Submission.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\obj\Debug\Method Class Assignment Submission.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\obj\Debug\Method Class Assignment Submission.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Method Class Assignment Submission\Method Class Assignment Submission\obj\Debug\Method Class Assignment Submission.pdb
