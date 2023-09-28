@@ -9,6 +9,7 @@ namespace AbstractClassAssignment
     //keyword abstract make the Person class an abstract class which cannot be instantiated.
     abstract class Person
     {
+
         public string firstName { get; set; }
         public string lastName { get; set; }
         //abstract keyword make the method SayName() an abstract method which cannot have an implementation.
