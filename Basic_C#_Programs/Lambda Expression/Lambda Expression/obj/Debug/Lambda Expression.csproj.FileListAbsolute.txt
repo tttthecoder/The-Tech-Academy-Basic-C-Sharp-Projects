@@ -1,0 +1,6 @@
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\bin\Debug\Lambda Expression.exe.config
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\bin\Debug\Lambda Expression.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\bin\Debug\Lambda Expression.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\obj\Debug\Lambda Expression.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\obj\Debug\Lambda Expression.exe
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\Lambda Expression\Lambda Expression\obj\Debug\Lambda Expression.pdb
