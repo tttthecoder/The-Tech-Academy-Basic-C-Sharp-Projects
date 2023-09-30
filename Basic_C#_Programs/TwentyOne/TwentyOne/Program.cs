@@ -26,6 +26,7 @@ namespace TwentyOne
                 while (player.isActivePlaying && player.Balance > 0)
                 {
                     game.Play();
+                    Console.WriteLine("Your balance is now: {0}", player.Balance);
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");

@@ -23,5 +23,7 @@ namespace TwentyOne
                 Console.WriteLine(player.Name);
             }
         }
+        public abstract void askIfUserWantToPlayAgain(Player player); 
+     
     }
 }

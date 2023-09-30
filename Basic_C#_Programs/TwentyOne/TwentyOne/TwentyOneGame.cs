@@ -40,6 +40,7 @@ namespace TwentyOne
                 {
                     Console.Write("{0}: ", player.Name);
                     Dealer.Deal(player.Hand);
+                    Console.WriteLine(player.Hand.Last().ToString() + "\n");
                     if (i == 1)
                     {
                         bool blackJack = TwentyOneRules.checkForBlackJack(player.Hand);
@@ -47,11 +48,12 @@ namespace TwentyOne
                         {
                             Console.WriteLine("Blackjack! {0} wins {1}", player.Name, Bets[player]);
                             player.Balance += Convert.ToInt32(1.5m * Bets[player] + Bets[player]);
+                            this.askIfUserWantToPlayAgain(player);
                             return;
                         }
                     }
                 }
-                Console.Write("Dealer: ");
+                //Console.Write("Dealer: ");//hide dealer hand.
                 Dealer.Deal(Dealer.Hand);
                 if (i == 1)
                 {
@@ -62,6 +64,10 @@ namespace TwentyOne
                         foreach (KeyValuePair<Player, int> entry in Bets)
                         {
                             Dealer.Balance += entry.Value;
+                        }
+                        foreach (Player player in Players)
+                        {
+                            this.askIfUserWantToPlayAgain(player);
                         }
                         return;
                     }
@@ -89,29 +95,29 @@ namespace TwentyOne
                     else if (answer == "hit")
                     {
                         Dealer.Deal(player.Hand);
+                        Console.WriteLine("You just got the {0} of {1}.",player.Hand.Last().Face, player.Hand.Last().Suit);
                     }
                     bool busted = TwentyOneRules.isBusted(player.Hand);
                     if (busted)
                     {
                         Dealer.Balance += Bets[player];
-                        player.Balance -= Bets[player];// instructor does not have this line.
                         Console.WriteLine("{0} Busted! you lose your bet of {1}. Your balance is now {2}.", player.Name, Bets[player], player.Balance);
                         Bets.Remove(player);
                         Console.WriteLine("Do you want to play again?");
-                        answer = Console.ReadLine().ToLower();
-                        if (answer == "yes" || answer == "yeah")
-                        {
-                            player.isActivePlaying = true;
-                        }
-                        else
-                        {
-                            player.isActivePlaying = false;
-                        }
+                        this.askIfUserWantToPlayAgain(player);
                         return; // instructor uses this line of code.
                         //break; // intructor does not have this line.
                     }
+                    if (player.Hand.Count == 5)
+                    {
+                        Console.WriteLine("Player won!");
+                        Console.WriteLine("{0} won {1}!", player.Name, Bets[player]);
+                        player.Balance += 2 * Bets[player];
+                        Dealer.Balance -= Bets[player];
+                        this.askIfUserWantToPlayAgain(player);
+                        return;
+                    }
                 }
-                
             }
 
             Dealer.isBusted = TwentyOneRules.isBusted(Dealer.Hand);
@@ -161,16 +167,12 @@ namespace TwentyOne
                     Console.WriteLine("Dealer won {0}!", Bets[player]);
                     Dealer.Balance += Bets[player];
                 }
-                Console.WriteLine("Plays again?");
-                string answer = Console.ReadLine().ToLower();
-                if (answer == "yes" || answer == "yeah")
+                Console.WriteLine("Dealer cards are: ");
+                foreach (Card card in Dealer.Hand)
                 {
-                    player.isActivePlaying = true;
+                    Console.Write("{0}, ", card.ToString());
                 }
-                else
-                {
-                    player.isActivePlaying = false;
-                }
+                this.askIfUserWantToPlayAgain(player);
             }
         }
 
@@ -182,6 +184,19 @@ namespace TwentyOne
         public void WalkAway(Player player)
         {
             throw new NotImplementedException();
+        }
+        public override void askIfUserWantToPlayAgain(Player player)
+        {
+            Console.WriteLine("\nPlay again?");
+            string answer = Console.ReadLine().ToLower();
+            if (answer == "yes" || answer == "yeah")
+            {
+                player.isActivePlaying = true;
+            }
+            else
+            {
+                player.isActivePlaying = false;
+            }
         }
     }
 }

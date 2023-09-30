@@ -15,7 +15,7 @@ namespace TwentyOne
         {
 
             Hand.Add(Deck.Cards.First());
-            Console.WriteLine(Deck.Cards.First().ToString() + "\n");
+            //Console.WriteLine(Deck.Cards.First().ToString() + "\n");//have to hide this line as I want to hide dealer hand from user. 
             Deck.Cards.RemoveAt(0);
         }
 
