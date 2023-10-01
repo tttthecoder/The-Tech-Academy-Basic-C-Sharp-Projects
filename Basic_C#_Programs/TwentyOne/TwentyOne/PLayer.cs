@@ -27,7 +27,7 @@ namespace TwentyOne
         {
             if (Balance - amount < 0)
             {
-                Console.WriteLine("You do not have enough to place a bet that size.");
+                Console.WriteLine("You do not have enough to place a bet that size. Please put a lower bet!");
                 return false;
             }
             else

@@ -27,6 +27,8 @@ namespace TwentyOne
                 {
                     game.Play();
                     Console.WriteLine("Your balance is now: {0}", player.Balance);
+                    game.askIfUserWantToPlayAgain(player);
+
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");

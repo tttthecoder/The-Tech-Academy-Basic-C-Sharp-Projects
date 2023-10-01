@@ -21,16 +21,27 @@ namespace TwentyOne
             Dealer.Stay = false;
             Dealer.Deck = new Deck();
             Dealer.Deck.Shuffle();
-            Console.WriteLine("Place your bet!");
-
+            Console.WriteLine("Place your bet!(If you want to place all your balance, press 'All')");
             foreach (Player player in Players)
             {
-                int bet = Convert.ToInt32(Console.ReadLine());
-                if (!player.Bet(bet))
+                string reply = Console.ReadLine();
+                if (reply.ToLower() == "all")
                 {
-                    return;
+                    int balance = player.Balance;
+                    player.Bet(balance);
+                    Bets[player] = balance;
                 }
-                Bets[player] = bet;
+                else
+                {
+                    int bet = Convert.ToInt32(reply);
+                    while (!player.Bet(bet))
+                    {
+                        bet = Convert.ToInt32(Console.ReadLine());
+
+                    }
+                    Bets[player] = bet;
+                }
+
             }
 
             for (int i = 0; i < 2; i++)
@@ -48,7 +59,6 @@ namespace TwentyOne
                         {
                             Console.WriteLine("Blackjack! {0} wins {1}", player.Name, Bets[player]);
                             player.Balance += Convert.ToInt32(1.5m * Bets[player] + Bets[player]);
-                            this.askIfUserWantToPlayAgain(player);
                             return;
                         }
                     }
@@ -64,10 +74,6 @@ namespace TwentyOne
                         foreach (KeyValuePair<Player, int> entry in Bets)
                         {
                             Dealer.Balance += entry.Value;
-                        }
-                        foreach (Player player in Players)
-                        {
-                            this.askIfUserWantToPlayAgain(player);
                         }
                         return;
                     }
@@ -95,16 +101,14 @@ namespace TwentyOne
                     else if (answer == "hit")
                     {
                         Dealer.Deal(player.Hand);
-                        Console.WriteLine("You just got the {0} of {1}.",player.Hand.Last().Face, player.Hand.Last().Suit);
+                        Console.WriteLine("You just got the {0} of {1}.", player.Hand.Last().Face, player.Hand.Last().Suit);
                     }
                     bool busted = TwentyOneRules.isBusted(player.Hand);
                     if (busted)
                     {
                         Dealer.Balance += Bets[player];
-                        Console.WriteLine("{0} Busted! you lose your bet of {1}. Your balance is now {2}.", player.Name, Bets[player], player.Balance);
+                        Console.WriteLine("{0} Busted! you lose your bet of {1}", player.Name, Bets[player]);
                         Bets.Remove(player);
-                        Console.WriteLine("Do you want to play again?");
-                        this.askIfUserWantToPlayAgain(player);
                         return; // instructor uses this line of code.
                         //break; // intructor does not have this line.
                     }
@@ -114,7 +118,6 @@ namespace TwentyOne
                         Console.WriteLine("{0} won {1}!", player.Name, Bets[player]);
                         player.Balance += 2 * Bets[player];
                         Dealer.Balance -= Bets[player];
-                        this.askIfUserWantToPlayAgain(player);
                         return;
                     }
                 }
@@ -170,9 +173,8 @@ namespace TwentyOne
                 Console.WriteLine("Dealer cards are: ");
                 foreach (Card card in Dealer.Hand)
                 {
-                    Console.Write("{0}, ", card.ToString());
+                    Console.WriteLine("{0} ", card.ToString());
                 }
-                this.askIfUserWantToPlayAgain(player);
             }
         }
 
@@ -187,6 +189,11 @@ namespace TwentyOne
         }
         public override void askIfUserWantToPlayAgain(Player player)
         {
+            if (player.Balance <= 0)
+            {
+                Console.WriteLine("Sorry, your balance is not enough to continue to play.");
+                return;
+            }
             Console.WriteLine("\nPlay again?");
             string answer = Console.ReadLine().ToLower();
             if (answer == "yes" || answer == "yeah")
