@@ -20,19 +20,13 @@ namespace TwentyOne
             {
                 Game game = new TwentyOneGame();
                 Player player = new Player(playerName, bank);
-                
                 player.isActivePlaying = true;
                 game += player;
                 while (player.isActivePlaying && player.Balance > 0)
                 {
-                    player.handsAndBets = new Dictionary<TwentyOnePlayerHand, int>();
-                    Console.WriteLine("And how many hands would you like to play?");
-                    int numOfHands = Convert.ToInt32(Console.ReadLine());
-                    player.numOfHands = numOfHands;
                     game.Play();
                     Console.WriteLine("Your balance is now: {0}", player.Balance);
                     game.askIfUserWantToPlayAgain(player);
-
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");

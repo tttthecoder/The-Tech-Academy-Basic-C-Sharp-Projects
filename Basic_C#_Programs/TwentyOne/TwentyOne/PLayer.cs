@@ -58,7 +58,7 @@ namespace TwentyOne
         //public int Bet { get; set; }
         public void showCards()
         {
-            Console.WriteLine("Hand {0} cards are: ", this.handName);
+            Console.WriteLine("{0} cards are: ", this.handName);
             foreach (Card card in this.Cards)
             {
                 Console.WriteLine("{0} of {1}", card.Face, card.Suit);

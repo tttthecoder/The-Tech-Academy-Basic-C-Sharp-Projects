@@ -24,6 +24,5 @@ namespace TwentyOne
             }
         }
         public abstract void askIfUserWantToPlayAgain(Player player); 
-     
     }
 }
