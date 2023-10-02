@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace TwentyOne
 {
     class Dealer
@@ -11,11 +13,11 @@ namespace TwentyOne
         public string Name { get; set; }
         public Deck Deck { get; set; }
         public int Balance { get; set; }
-        public void Deal(List<Card> Hand)
+        public void Deal(Hand hand)
         {
 
-            Hand.Add(Deck.Cards.First());
-            Console.WriteLine(Deck.Cards.First().ToString() + "\n");
+            hand.Cards.Add(Deck.Cards.First());
+            //Console.WriteLine(Deck.Cards.First().ToString() + "\n");//have to hide this line as I want to hide dealer hand from user. 
             Deck.Cards.RemoveAt(0);
         }
 

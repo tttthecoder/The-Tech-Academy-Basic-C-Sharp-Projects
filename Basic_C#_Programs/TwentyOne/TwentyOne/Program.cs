@@ -18,18 +18,18 @@ namespace TwentyOne
             string answer = Console.ReadLine().ToLower();
             if (answer == "yes" || answer == "yeah" || answer == "y" || answer == "ya")
             {
-                Player player = new Player(playerName, bank);
                 Game game = new TwentyOneGame();
-                //game.Players = new List<Player>();//this line can fix the exception of not instantiating the Players list.
-                game += player;
+                Player player = new Player(playerName, bank);
                 player.isActivePlaying = true;
+                game += player;
                 while (player.isActivePlaying && player.Balance > 0)
                 {
                     game.Play();
+                    Console.WriteLine("Your balance is now: {0}", player.Balance);
+                    game.askIfUserWantToPlayAgain(player);
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");
-
             }
             Console.WriteLine("Feel free to look around the casino. Bye for now!");
             Console.Read();
