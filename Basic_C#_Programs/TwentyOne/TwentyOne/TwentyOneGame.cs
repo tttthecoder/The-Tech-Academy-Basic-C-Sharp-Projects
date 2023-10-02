@@ -11,171 +11,165 @@ namespace TwentyOne
         public TwentyOneDealer Dealer { get; set; }
         public override void Play()
         {
+            //initialize a dealer.
             Dealer = new TwentyOneDealer();
-            foreach (Player player in Players)
-            {
-                player.Hand = new List<Card>();
-                player.Stay = false;
-            }
-            Dealer.Hand = new List<Card>();
+            Dealer.hand = new Hand();
             Dealer.Stay = false;
             Dealer.Deck = new Deck();
             Dealer.Deck.Shuffle();
-            Console.WriteLine("Place your bet!(If you want to place all your balance, press 'All')");
-            foreach (Player player in Players)
+            //initialize a player and their hands.
+            Player player = this.Players.First();
+            List<TwentyOnePlayerHand> listOfHands = new List<TwentyOnePlayerHand>();
+            for (int i = 0; i < player.numOfHands; i++)
             {
+                TwentyOnePlayerHand hand = new TwentyOnePlayerHand();
+                hand.Lost = null;
+                hand.handName = "Hand " + (i + 1);
+                Console.WriteLine("Place your bet for {0}", hand.handName);
                 string reply = Console.ReadLine();
-                if (reply.ToLower() == "all")
+                int bet = Convert.ToInt32(reply);
+                while (!player.Bet(bet))
                 {
-                    int balance = player.Balance;
-                    player.Bet(balance);
-                    Bets[player] = balance;
+                    bet = Convert.ToInt32(Console.ReadLine());
                 }
-                else
-                {
-                    int bet = Convert.ToInt32(reply);
-                    while (!player.Bet(bet))
-                    {
-                        bet = Convert.ToInt32(Console.ReadLine());
-
-                    }
-                    Bets[player] = bet;
-                }
-
+                Bets[hand] = bet;
+                player.handsAndBets[hand] = bet;
+                listOfHands.Add(hand);
             }
-
             for (int i = 0; i < 2; i++)
             {
                 Console.WriteLine("Dealing..");
-                foreach (Player player in Players)
+                foreach (TwentyOnePlayerHand hand in player.handsAndBets.Keys)
                 {
                     Console.Write("{0}: ", player.Name);
-                    Dealer.Deal(player.Hand);
-                    Console.WriteLine(player.Hand.Last().ToString() + "\n");
-                    if (i == 1)
-                    {
-                        bool blackJack = TwentyOneRules.checkForBlackJack(player.Hand);
-                        if (blackJack)
-                        {
-                            Console.WriteLine("Blackjack! {0} wins {1}", player.Name, Bets[player]);
-                            player.Balance += Convert.ToInt32(1.5m * Bets[player] + Bets[player]);
-                            return;
-                        }
-                    }
+                    Dealer.Deal(hand);
+                    Console.WriteLine(hand.Cards.Last().ToString() + "\n");
                 }
-                //Console.Write("Dealer: ");//hide dealer hand.
-                Dealer.Deal(Dealer.Hand);
-                if (i == 1)
-                {
-                    bool blackJack = TwentyOneRules.checkForBlackJack(Dealer.Hand);
-                    if (blackJack)
-                    {
-                        Console.WriteLine("Dealer has BlackJack! Everyone loses!");
-                        foreach (KeyValuePair<Player, int> entry in Bets)
-                        {
-                            Dealer.Balance += entry.Value;
-                        }
-                        return;
-                    }
-                }
-
+                Dealer.Deal(Dealer.hand);
 
 
             }
-            foreach (Player player in Players)
+            //Dealing with each hand of player.
+            foreach (TwentyOnePlayerHand hand in player.handsAndBets.Keys)
             {
-                while (!player.Stay)
+                bool blackJack = TwentyOneRules.checkForBlackJack(hand.Cards);
+                if (blackJack)
                 {
-                    Console.WriteLine("your cards are: ");
-                    foreach (Card card in player.Hand)
+
+                    Console.WriteLine("Blackjack! {0} wins {1}", hand.handName, Bets[hand]);
+                    hand.Lost = false;
+                    player.Balance += Convert.ToInt32(1.5m * Bets[hand] + Bets[hand]);
+                    Console.WriteLine("Your balance now is {0}", player.Balance);
+                    hand.Stay = true;
+                    Bets.Remove(hand);
+                }
+                else
+                {
+                    while (!hand.Stay)
                     {
-                        Console.Write("{0} ", card.ToString());
-                    }
-                    Console.WriteLine("\n\nHit or Stay?");
-                    string answer = Console.ReadLine().ToLower();
-                    if (answer == "stay")
-                    {
-                        player.Stay = true;
-                        break;
-                    }
-                    else if (answer == "hit")
-                    {
-                        Dealer.Deal(player.Hand);
-                        Console.WriteLine("You just got the {0} of {1}.", player.Hand.Last().Face, player.Hand.Last().Suit);
-                    }
-                    bool busted = TwentyOneRules.isBusted(player.Hand);
-                    if (busted)
-                    {
-                        Dealer.Balance += Bets[player];
-                        Console.WriteLine("{0} Busted! you lose your bet of {1}", player.Name, Bets[player]);
-                        Bets.Remove(player);
-                        return; // instructor uses this line of code.
-                        //break; // intructor does not have this line.
-                    }
-                    if (player.Hand.Count == 5)
-                    {
-                        Console.WriteLine("Player won!");
-                        Console.WriteLine("{0} won {1}!", player.Name, Bets[player]);
-                        player.Balance += 2 * Bets[player];
-                        Dealer.Balance -= Bets[player];
-                        return;
+                        hand.showCards();
+                        Console.WriteLine("\n\nHit or Stay?");
+                        string answer = Console.ReadLine().ToLower();
+                        if (answer == "stay")
+                        {
+                            hand.Stay = true;
+                            break;
+                        }
+                        else if (answer == "hit")
+                        {
+                            Dealer.Deal(hand);
+                            Console.WriteLine("You just got the {0} of {1} for {2}.", hand.Cards.Last().Face, hand.Cards.Last().Suit, hand.handName);
+                        }
+                        bool busted = TwentyOneRules.isBusted(hand.Cards);
+                        if (busted)
+                        {
+                            hand.Lost = true;
+                            Dealer.Balance += Bets[hand];
+                            Console.WriteLine("{0} Busted! you lose your bet of {1}", hand.handName, Bets[hand]);
+                            Console.WriteLine("Your balance now is {0}", player.Balance);
+                            Bets.Remove(hand);
+                            break;
+                        }
+
+                        if (hand.Cards.Count == 5)
+                        {
+                            hand.Lost = false;
+                            Console.WriteLine("Player won!");
+                            Console.WriteLine("{0} won {1}!", hand.handName, Bets[hand]);
+                            player.Balance += 2 * Bets[hand];
+                            Console.WriteLine("Your balance now is {0}", player.Balance);
+                            Bets.Remove(hand);
+                            Dealer.Balance -= Bets[hand];
+                            break;
+                        }
                     }
                 }
+                Console.WriteLine("{0} is locked", hand.handName);
+
+            }
+            List<TwentyOnePlayerHand> undeterminedHands = player.handsAndBets.Keys.ToList().Where(x => x.Lost == null).ToList();
+            if (undeterminedHands.Count == 0)
+            {
+                return;
             }
 
-            Dealer.isBusted = TwentyOneRules.isBusted(Dealer.Hand);
-            Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.Hand);
+
+
+            Dealer.isBusted = TwentyOneRules.isBusted(Dealer.hand.Cards);
+            Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.hand.Cards);
             while (!Dealer.Stay && !Dealer.isBusted)
             {
                 Console.WriteLine("Dealer is hitting...");
-                Dealer.Deal(Dealer.Hand);
-                Dealer.isBusted = TwentyOneRules.isBusted(Dealer.Hand);
-                Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.Hand);
+                Dealer.Deal(Dealer.hand);
+                Dealer.isBusted = TwentyOneRules.isBusted(Dealer.hand.Cards);
+                Dealer.Stay = TwentyOneRules.shouldDealerStay(Dealer.hand.Cards);
             }
-            if (Dealer.Stay)
-            {
-                Console.WriteLine("Dealer is staying");
 
-            }
             if (Dealer.isBusted)
             {
                 Console.WriteLine("Dealer busted!");
-                foreach (KeyValuePair<Player, int> entry in Bets)
+                //foreach (KeyValuePair<Hand, int> entry in Bets)
+                foreach (TwentyOnePlayerHand hand in undeterminedHands )
                 {
-                    Console.WriteLine("{0} won {1}!", entry.Key.Name, entry.Value);
-                    //Players.Where(x => x.Name == entry.Key.Name).First().Balance += (entry.Value * 2);//instructor uses this line, but i think it is inefficient.
-                    entry.Key.Balance += 2 * entry.Value;
-                    Dealer.Balance -= entry.Value;
+                    Console.WriteLine("{0} won {1}!", hand.handName, Bets[hand]);
+                    player.Balance += 2 * Bets[hand];
+                    Dealer.Balance -= Bets[hand];
                 }
                 return;
             }
-            foreach (Player player in Players)
+
+            Console.WriteLine("Dealer is staying");
+
+            foreach (TwentyOnePlayerHand hand in undeterminedHands)
             {
-                bool? playerWon = TwentyOneRules.CompareHands(player.Hand, Dealer.Hand);
-                if (playerWon == null)
+                Console.WriteLine("dealing with {0}",hand.handName);
+                bool? handWon = TwentyOneRules.CompareHands(hand.Cards, Dealer.hand.Cards);
+                if (handWon == null)
                 {
                     Console.WriteLine("Push! no one wins.");
-                    player.Balance += Bets[player];
-                    Bets.Remove(player);//instructor does not have this line.
+                    player.Balance += Bets[hand];
+                    Bets.Remove(hand);
                 }
-                else if (playerWon == true)
+                else if (handWon == true)
                 {
-                    Console.WriteLine("{0} won {1}!", player.Name, Bets[player]);
-                    player.Balance += 2 * Bets[player];
-                    Dealer.Balance -= Bets[player];
+                    Console.WriteLine("{0} won {1}!", hand.handName, Bets[hand]);
+                    player.Balance += 2 * Bets[hand];
+                    Dealer.Balance -= Bets[hand];
 
                 }
                 else
                 {
-                    Console.WriteLine("Dealer won {0}!", Bets[player]);
-                    Dealer.Balance += Bets[player];
+                    Console.WriteLine("Dealer won {0}!", hand.handName);
+                    Dealer.Balance += Bets[hand];
                 }
-                Console.WriteLine("Dealer cards are: ");
-                foreach (Card card in Dealer.Hand)
-                {
-                    Console.WriteLine("{0} ", card.ToString());
-                }
+                Console.WriteLine("Your balance now is {0}", player.Balance);
             }
+            Console.WriteLine("Dealer cards are: ");
+            foreach (Card card in Dealer.hand.Cards)
+            {
+                Console.WriteLine("{0} ", card.ToString());
+            }
+            return;
         }
 
         public override void ListPlayers()
@@ -207,3 +201,7 @@ namespace TwentyOne
         }
     }
 }
+
+
+
+

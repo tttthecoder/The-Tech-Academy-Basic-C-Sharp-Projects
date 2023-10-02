@@ -18,13 +18,17 @@ namespace TwentyOne
             string answer = Console.ReadLine().ToLower();
             if (answer == "yes" || answer == "yeah" || answer == "y" || answer == "ya")
             {
-                Player player = new Player(playerName, bank);
                 Game game = new TwentyOneGame();
-                //game.Players = new List<Player>();//this line can fix the exception of not instantiating the Players list.
-                game += player;
+                Player player = new Player(playerName, bank);
+                
                 player.isActivePlaying = true;
+                game += player;
                 while (player.isActivePlaying && player.Balance > 0)
                 {
+                    player.handsAndBets = new Dictionary<TwentyOnePlayerHand, int>();
+                    Console.WriteLine("And how many hands would you like to play?");
+                    int numOfHands = Convert.ToInt32(Console.ReadLine());
+                    player.numOfHands = numOfHands;
                     game.Play();
                     Console.WriteLine("Your balance is now: {0}", player.Balance);
                     game.askIfUserWantToPlayAgain(player);
@@ -32,7 +36,6 @@ namespace TwentyOne
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");
-
             }
             Console.WriteLine("Feel free to look around the casino. Bye for now!");
             Console.Read();

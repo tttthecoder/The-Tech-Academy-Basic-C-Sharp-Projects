@@ -8,9 +8,9 @@ namespace TwentyOne
 {
     class TwentyOneDealer : Dealer
     {
-        private List<Card> _hand = new List<Card>();
+        private Hand _hand = new Hand();
         public bool Stay { get; set; }
         public bool isBusted { get; set; }
-        public List<Card> Hand { get { return _hand; } set { _hand = value; } }
+        public Hand hand { get { return _hand; } set { _hand = value; } }
     }
 }
