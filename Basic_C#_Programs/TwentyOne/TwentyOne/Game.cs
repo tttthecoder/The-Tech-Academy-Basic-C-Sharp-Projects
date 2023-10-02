@@ -9,11 +9,11 @@ namespace TwentyOne
     public abstract class Game
     {
         private List<Player> _Players = new List<Player>();
-        private Dictionary<TwentyOnePlayerHand, int> _bets = new Dictionary<TwentyOnePlayerHand, int>();
+        private Dictionary<Hand, int> _bets = new Dictionary<Hand, int>();
         public List<Player> Players { get { return _Players; } set { _Players = value; }}
         public string Name { get; set; }
         public string Dealer { get; set; }
-        public Dictionary<TwentyOnePlayerHand, int> Bets { get { return _bets; } set { _bets = value; } }
+        public Dictionary<Hand, int> Bets { get { return _bets; } set { _bets = value; } }
 
         public abstract void Play();
         public virtual void ListPlayers()
