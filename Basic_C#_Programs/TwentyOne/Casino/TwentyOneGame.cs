@@ -33,7 +33,7 @@ namespace Casino.TwentyOne
                     validAswer = int.TryParse(Console.ReadLine(), out bet);
                     if (!validAswer) Console.WriteLine("Please enter digits only! No decimals.");
                 }
-                if (bet< 0)
+                if (bet < 0)
                 {
                     throw new FraudException();
                 }

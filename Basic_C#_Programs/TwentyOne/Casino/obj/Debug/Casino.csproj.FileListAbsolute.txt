@@ -3,3 +3,4 @@ C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\Casino\bin\Debug\Casino.pdb
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\Casino\obj\Debug\Casino.dll
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\Casino\obj\Debug\Casino.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\Casino\obj\Debug\Casino.csproj.AssemblyReference.cache

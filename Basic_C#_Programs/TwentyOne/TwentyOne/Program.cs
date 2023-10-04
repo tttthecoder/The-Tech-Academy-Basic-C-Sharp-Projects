@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Casino;
+using Casino.TwentyOne;
 namespace TwentyOne
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Grand Hotel and Casino. Let's start by telling me your name.");
@@ -18,14 +20,29 @@ namespace TwentyOne
             string answer = Console.ReadLine().ToLower();
             if (answer == "yes" || answer == "yeah" || answer == "y" || answer == "ya")
             {
+
                 Player player = new Player(playerName, bank);
                 Game game = new TwentyOneGame();
-                //game.Players = new List<Player>();//this line can fix the exception of not instantiating the Players list.
                 game += player;
                 player.isActivePlaying = true;
                 while (player.isActivePlaying && player.Balance > 0)
                 {
-                    game.Play();
+                    try
+                    {
+                        game.Play();
+                    }
+                    catch (FraudException)
+                    {
+                        Console.WriteLine("Security, please kick this person out!");
+                        Console.ReadLine();
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Something went wrong, please contact System Admin.");
+                        Console.ReadLine();
+                        return;
+                    }
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");
