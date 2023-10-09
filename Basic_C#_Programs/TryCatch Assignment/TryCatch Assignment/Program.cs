@@ -22,11 +22,11 @@ namespace TryCatch_Assignment
             {
                 int age = Convert.ToInt32(Console.ReadLine());
                 //Check if the age was less than zero or equal to zero.
-                if (age <= 0)   
+                if (age <= 0)
                 {
 
                     //Create an object of type LessThanZeroException with the Message prop is set to the specified string.
-                    LessThanZeroException error =  new LessThanZeroException("Less than zero age was entered!");
+                    LessThanZeroException error = new LessThanZeroException("Less than zero age was entered!");
                     //Throw the exception
                     throw error;
                 }
