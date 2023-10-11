@@ -10,7 +10,16 @@ namespace TwentyOne
     {
         private List<Card> _Cards = new List<Card>();
         public List<Card> Cards { get { return _Cards; } set { _Cards = value; } }
-        
 
+        public override string ToString()
+        {
+            string result = "";
+            foreach (Card card in this.Cards)
+            {
+                result += (card.ToString() + " ");
+            }
+
+            return result;
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TwentyOne
 {
-    class Dealer
+    public class Dealer
     {
         public string Name { get; set; }
         public Deck Deck { get; set; }

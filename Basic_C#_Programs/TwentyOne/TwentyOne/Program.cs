@@ -18,13 +18,42 @@ namespace TwentyOne
             string answer = Console.ReadLine().ToLower();
             if (answer == "yes" || answer == "yeah" || answer == "y" || answer == "ya")
             {
-                Game game = new TwentyOneGame();
+                TwentyOneGame game = new TwentyOneGame();
                 Player player = new Player(playerName, bank);
                 player.isActivePlaying = true;
                 game += player;
                 while (player.isActivePlaying && player.Balance > 0)
                 {
                     game.Play();
+                    //Initiate a play session for logging purpose...
+                    TwentyOneGamePlaySession session = new TwentyOneGamePlaySession() { PlayerName = player.Name };
+                    session.DealerHand = game.Dealer.hand.ToString();
+                    List<TwentyOnePlayerHand> handsForSession = player.handsAndBets.Keys.ToList();
+                    //logging into session for 1st hand.
+                    session.HandOne = handsForSession[0].ToString();
+                    session.HandOneLostStatus = handsForSession[0].Lost;
+                    session.HandOneBet = player.handsAndBets[handsForSession[0]];
+                    if (handsForSession.Count >= 1)
+                    {
+                        //Logging for 2nd hand.
+                        session.HandTwo = handsForSession[1].ToString();
+                        session.HandTwoLostStatus = handsForSession[1].Lost;
+                        session.HandTwoBet = player.handsAndBets[handsForSession[1]];
+                        if (handsForSession.Count == 3)
+                        {
+                            session.HandThree = handsForSession[2].ToString();
+                            session.HandThreeLostStatus = handsForSession[2].Lost;
+                            session.HandThreeBet = player.handsAndBets[handsForSession[2]];
+                        }
+                    }
+
+                    using (TwentyOneDbContext db = new  TwentyOneDbContext())
+                    {
+                        db.TwentyOneGamePlaySessions.Add(session);
+                        db.SaveChanges();
+                    }
+                    //Logging to the database ends.
+
                     Console.WriteLine("Your balance is now: {0}", player.Balance);
                     game.askIfUserWantToPlayAgain(player);
                 }

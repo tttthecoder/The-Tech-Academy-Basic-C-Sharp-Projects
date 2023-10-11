@@ -4,3 +4,9 @@ C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.exe
 C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.pdb
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\The-Tech-Academy-Basic-C-Sharp-Projects\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.CopyComplete

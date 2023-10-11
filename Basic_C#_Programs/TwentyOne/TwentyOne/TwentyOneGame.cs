@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwentyOne
 {
-    class TwentyOneGame : Game, IWalkAway
+    public class TwentyOneGame : Game, IWalkAway
     {
         public TwentyOneDealer Dealer { get; set; }
         public override void Play()
@@ -15,9 +15,15 @@ namespace TwentyOne
             Console.WriteLine("-----------Game starts!-------------------");
             //initialize a player and their hands.
             Player player = this.Players.First();
-            Console.WriteLine("How many hands would you like to play?");
-            int numOfHands = Convert.ToInt32(Console.ReadLine());
-            player.numOfHands = numOfHands;
+            int numOfHandsChosen = 0;
+
+            while (numOfHandsChosen <= 0 || numOfHandsChosen > 3)
+            {
+                Console.WriteLine("How many hands would you like to play?(Maximum 3 hands allowed)");
+                numOfHandsChosen = Convert.ToInt32(Console.ReadLine());
+            }
+
+            player.numOfHands = numOfHandsChosen;
             player.handsAndBets = new Dictionary<TwentyOnePlayerHand, int>();
             //initialize a dealer.
             Dealer = new TwentyOneDealer();
@@ -25,6 +31,7 @@ namespace TwentyOne
             Dealer.Stay = false;
             Dealer.Deck = new Deck();
             Dealer.Deck.Shuffle();
+            //Dealing with the hands and their bets
             for (int i = 0; i < player.numOfHands; i++)
             {
                 TwentyOnePlayerHand hand = new TwentyOnePlayerHand();
@@ -60,7 +67,7 @@ namespace TwentyOne
                 if (blackJack)
                 {
 
-                    Console.WriteLine("Blackjack! {0} wins {1}", hand.handName, Bets[hand]*1.5);
+                    Console.WriteLine("Blackjack! {0} wins {1}", hand.handName, Bets[hand] * 1.5);
                     hand.Lost = false;
                     player.Balance += Convert.ToInt32(1.5m * Bets[hand] + Bets[hand]);
                     Console.WriteLine("Your balance now is {0}", player.Balance);
@@ -133,6 +140,7 @@ namespace TwentyOne
                 foreach (TwentyOnePlayerHand hand in undeterminedHands)
                 {
                     Console.WriteLine("{0} won {1}!", hand.handName, Bets[hand]);
+                    hand.Lost = false;
                     player.Balance += 2 * Bets[hand];
                     Dealer.Balance -= Bets[hand];
                 }
@@ -143,7 +151,7 @@ namespace TwentyOne
 
             foreach (TwentyOnePlayerHand hand in undeterminedHands)
             {
-                Console.WriteLine("dealing with {0}",hand.handName);
+                Console.WriteLine("dealing with {0}", hand.handName);
                 bool? handWon = TwentyOneRules.CompareHands(hand.Cards, Dealer.hand.Cards);
                 if (handWon == null)
                 {
@@ -154,6 +162,7 @@ namespace TwentyOne
                 else if (handWon == true)
                 {
                     Console.WriteLine("{0} won {1}!", hand.handName, Bets[hand]);
+                    hand.Lost = false;
                     player.Balance += 2 * Bets[hand];
                     Dealer.Balance -= Bets[hand];
 
@@ -161,6 +170,7 @@ namespace TwentyOne
                 else
                 {
                     Console.WriteLine("Dealer won {0}!", hand.handName);
+                    hand.Lost = true;
                     Dealer.Balance += Bets[hand];
                 }
                 Console.WriteLine("Your balance now is {0}", player.Balance);

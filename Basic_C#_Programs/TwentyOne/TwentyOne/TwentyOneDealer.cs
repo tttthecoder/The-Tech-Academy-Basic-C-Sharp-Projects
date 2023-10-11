@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwentyOne
 {
-    class TwentyOneDealer : Dealer
+    public class TwentyOneDealer : Dealer
     {
         private Hand _hand = new Hand();
         public bool Stay { get; set; }
